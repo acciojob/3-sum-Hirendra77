@@ -1,17 +1,17 @@
 function threeSum(arr, target) {
   //your code here
-	let sum=0;
+	let closeSum=0;
 	for(let i=0;i<arr.length;i++){
 		for(let j=i+1;j<arr.length;j++){
-			for(let k=j+1;j<arr.length;k++){
-				sum+=arr[i]+arr[j]+arr[k]
-				if(sum==target){
-					return sum;
+			for(let k=j+1;k<arr.length;k++){
+				if(Math.abs(target-closeSum)>Math.abs(target-(arr[i]+arr[j]+arr[k]))){
+					closeSum=(arr[i]+arr[j]+arr[k])
 				}
 			}
 		}
+
 	}
-	
+	return closeSum;
 }
 
 module.exports = threeSum;
