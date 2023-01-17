@@ -1,17 +1,20 @@
 function threeSum(arr, target) {
   //your code here
-	let closeSum=0;
-	for(let i=0;i<arr.length;i++){
-		for(let j=i+1;j<arr.length;j++){
-			for(let k=j+1;k<arr.length;k++){
-				if(Math.abs(target-closeSum)>Math.abs(target-(arr[i]+arr[j]+arr[k]))){
-					closeSum=(arr[i]+arr[j]+arr[k])
-				}
-			}
-		}
-
-	}
-	return closeSum;
+	 let ans = Infinity;
+  arr.sort((a, b) => a - b);
+  arr.forEach((a, i) => {
+    const target2 = target - a;
+    let l = i + 1;
+    let r = arr.length - 1;
+    while (l < r) {
+      if (Math.abs(target - (arr[l] + arr[r] + a)) <= Math.abs(target - ans)) {
+        ans = arr[l] + arr[r] + a;
+      }
+      if (arr[l] + arr[r] > target2) r--;
+      else l++;
+    }
+  });
+  return ans;
 }
 
 module.exports = threeSum;
